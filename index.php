@@ -11,9 +11,11 @@
          <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" />
       </div>
       <div class="seachContainer">
-
-        <input class="searchBox" type="text" name="term">
-        <input class="searchButton" type="submit" value="Search">
+      
+        <form action="search.php" method = "GET">
+          <input class="searchBox" type="text" name="term">
+          <input class="searchButton" type="submit" value="Search">  
+        </form>
       
       </div>
     
