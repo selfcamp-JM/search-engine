@@ -31,13 +31,36 @@ function getDetails($url){
 	  $parser = new DomDocumentParser($url);
       $titleArray = $parser->getTitletags();
 
+      if($titleArray == 0 || $titleArray->item(0) == NULL){
+      	return;
+      }
+
       $title = $titleArray->item(0)->nodeValue;
       $title = str_replace("\n", "", $title);
 
       if($title == ""){
       	return;
       }
-    echo "URL: $url, Title: $title<br>";
+      $description = "";
+      $keywords = "";
+
+      $metasArray = $parser->getMetaTag();
+      
+      foreach ($metasArray as $meta) {
+      	if($meta->getAttribute("name") == "description"){
+            $description = $meta->getAttribute("content");
+      	}
+      	if($meta->getAttribute("name") == "keywords"){
+            $keywords = $meta->getAttribute("content");
+      	}
+      }
+
+      $description = str_replace("\n", "", $description);
+      $keywords = str_replace("\n", "", $keywords);
+
+
+
+    echo "URL: $url, Description: $description, Keywords: $keywords<br>";
 }
 
 
