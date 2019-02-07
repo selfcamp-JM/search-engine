@@ -26,6 +26,21 @@ function createLink($src, $url){
    return $src;
 }
 
+
+function getDetails($url){
+	  $parser = new DomDocumentParser($url);
+      $titleArray = $parser->getTitletags();
+
+      $title = $titleArray->item(0)->nodeValue;
+      $title = str_replace("\n", "", $title);
+
+      if($title == ""){
+      	return;
+      }
+    echo "URL: $url, Title: $title<br>";
+}
+
+
 function followLinks($url){
 
   global $alreadyCrawled;
@@ -49,13 +64,14 @@ function followLinks($url){
      
     $href = createLink($href,$url);
 
-    if(in_array($href, $alreadyCrawled)){
+    if(!in_array($href, $alreadyCrawled)){
     	$alreadyCrawled[] = $href;
     	$crawling[]=$href;
+        getDetails($href);
     }
 
-     echo $href."<br>";
   }  
+
   array_shift($crawling);
 
   foreach ($crawling as $site) {
@@ -66,6 +82,6 @@ function followLinks($url){
 
 
 
-$startUrl ="http://www.bbc.com";
+$startUrl ="http://www.hh.ru";
 followLinks($startUrl);
 ?>
