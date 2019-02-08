@@ -60,7 +60,7 @@ function getDetails($url){
 
 
 
-    echo "URL: $url, Description: $description, Keywords: $keywords<br>";
+    echo "URL: $url, Title:$title, Description: $description, Keywords: $keywords<br>";
 }
 
 
