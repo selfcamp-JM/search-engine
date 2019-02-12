@@ -66,7 +66,8 @@
     <div class="mainResultsSection">
       <?php 
         $resultsProvider = new SitesResultsProvider($con);
-        echo $resultsProvider->getNumResults($term);
+        $numResults =  $resultsProvider->getNumResults($term);
+        echo "<p class = 'resultsCount'>$numResults results found</p>";
       ?>
 
     </div>
