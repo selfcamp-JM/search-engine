@@ -68,8 +68,9 @@
         $resultsProvider = new SitesResultsProvider($con);
         $numResults =  $resultsProvider->getNumResults($term);
         echo "<p class = 'resultsCount'>$numResults results found</p>";
-      ?>
 
+        echo $resultsProvider->getResultsHtml(1,20, $term);
+      ?>
     </div>
 
 
