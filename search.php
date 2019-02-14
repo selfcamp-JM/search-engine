@@ -11,6 +11,8 @@
   }
 
   $type = isset($_GET["type"]) ? $_GET["type"] : "sites";
+  $page = isset($_GET["page"]) ? $_GET["page"] : 1;
+
   
 ?>
 <! DOCTYPE html>
@@ -66,10 +68,12 @@
     <div class="mainResultsSection">
       <?php 
         $resultsProvider = new SitesResultsProvider($con);
+        $pageLimit = 20;
+
         $numResults =  $resultsProvider->getNumResults($term);
         echo "<p class = 'resultsCount'>$numResults results found</p>";
 
-        echo $resultsProvider->getResultsHtml(1,20, $term);
+        echo $resultsProvider->getResultsHtml($page,$pageLimit, $term);
       ?>
     </div>
 
