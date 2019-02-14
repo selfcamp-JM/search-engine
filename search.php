@@ -33,7 +33,7 @@
             <div class="seachContainer">
                 <form action="search.php" method = "GET">
                     <div class="searchBarContainer">
-                        <input class="searchBox" type="text" name="term">
+                        <input class="searchBox" type="text" name="term" value="<?php echo $term; ?>">
                         <button class="searchButton">
                             <img src="assets/image/icons/icons8-search-24.png"/>
                         </button>
