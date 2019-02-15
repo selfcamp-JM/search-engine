@@ -56,7 +56,7 @@ public function getResultsHtml($page, $pageSize, $term) {
 
           $resultsHtml .="<div class='resultContainer'>
                             <h3 class='title'>
-                            <a class='result' href='$url'>
+                            <a class='result' href='$url' data-linkId='$id'>
                               $title
                             </a>
                             </h3>
