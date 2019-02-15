@@ -22,6 +22,12 @@
     <title>Kovuyov</title>
 
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
   </head>
  <body>
  
@@ -68,13 +74,72 @@
     <div class="mainResultsSection">
       <?php 
         $resultsProvider = new SitesResultsProvider($con);
-        $pageLimit = 20;
+        $pageSize = 20;
 
         $numResults =  $resultsProvider->getNumResults($term);
         echo "<p class = 'resultsCount'>$numResults results found</p>";
 
-        echo $resultsProvider->getResultsHtml($page,$pageLimit, $term);
+        echo $resultsProvider->getResultsHtml($page,$pageSize, $term);
       ?>
+    </div>
+
+
+    <div class="paginationContainer"> 
+      
+      <div class="pageButtons">
+        <div class="pageNumberConteiner"> 
+           <img src ="assets/image/pagestart.png">
+        </div>
+
+
+        <?php
+
+           $pageToShow = 10;
+           $numPages = ceil($numResults / $pageSize);
+           $pageLeft = min($pageToShow,$numPages);
+           
+           $currentPage = $page - floor($pageToShow /2);
+           
+           if($currentPage<1){
+            $currentPage = 1; 
+           }
+           if($currentPage + $pageLeft > $numPages+1){
+                 $currentPage = $numPages + 1 - $pageLeft;
+           }
+
+           while ($pageLeft!=0 && $currentPage<=$numPages) {
+                
+                if($currentPage == $page){
+                  echo "<div class='pageNumberConteiner'>
+                      <img src ='assets/image/pageselected.png'>
+                      <span class='pageNumber'>$currentPage</span>
+                 </div>";
+               }else{
+                echo "<div class='pageNumberConteiner'>
+                     <a href='search.php?term=$term&type=$type&page=$currentPage'>
+                       <img src ='assets/image/page.png'>
+                       <span class='pageNumber'>$currentPage</span>
+                     </a>
+                 </div>";
+               }
+                
+             $currentPage++;
+             $pageLeft--;
+
+           }
+           
+ 
+         ?>
+       
+       <div class="pageNumberConteiner"> 
+           <img src ="assets/image/pageselected.png">
+        </div>
+       
+        <div class="pageNumberConteiner"> 
+           <img src ="assets/image/pageEnd.png">
+        </div>
+      </div>
+    
     </div>
 
 
@@ -83,6 +148,7 @@
 
 
  </div>
-
+ 
+  <script type="text/javascript" src="assets/js/script.js"></script>
  </body>
 </html>
