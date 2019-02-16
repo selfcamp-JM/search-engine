@@ -68,10 +68,10 @@ public function getResultsHtml($page, $pageSize, $term) {
                             
                             <a href='$imageUrl'>
                               <img src='$imageUrl'>
+                              <span class='details'>$displayText</span>     
                             </a>
-                            </h3>
                            
-                            
+                                                     
                           </div>";
         }
 		
