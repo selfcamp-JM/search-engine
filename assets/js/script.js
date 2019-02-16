@@ -14,6 +14,16 @@ $(document).ready(function(){
       return false; //dont do default behavior 
    });
 
+
+   var grid = $(".imageResults");
+
+   grid.masonry({
+    itemSelector:".gridItem",
+    columnWidth:20,
+    gutter:5,
+    //isInitLayout:false
+   })
+
 });
 
 function increaseLinkClicks(linkId, url){
