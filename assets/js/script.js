@@ -4,7 +4,12 @@ $(document).ready(function(){
       
       var id = $(this).attr("data-linkId");  //to get Id ı used data-link attribute from sitesresultsprovider
       var url = $(this).attr("href"); // href attribute of result class
-      console.log(id);
+
+      if(!id){
+      	alert("data-link not found!!!");
+      }
+
+      increaseLinkClicks(id, url);
 
       return false; //dont do default behavior 
    });
@@ -12,5 +17,5 @@ $(document).ready(function(){
 });
 
 function increaseLinkClicks(linkId, url){
-
+    $.post("ajax/updateLinkCount.php",{linkId: linkId});
 };
